@@ -13,12 +13,16 @@ rm -rf /data/ubuntu.img;
 
 # Copy And Patch New File
 mv -f /data/ubports/data/ubuntu.img /data/;
+mv -f /data/ubports/data/boot.img /data/;
 
 # Create Folder Mount
 mkdir -p /data/linux/ubuntu;
 
 # Mount *.img to Folder Mount
 mount /data/ubuntu.img /data/linux/ubuntu;
+
+# Flash Kernel
+dd if=/dev/block/by-name/boot of=/data/boot.img
 
 # Umount All *.img
 umount /data/linux/ubuntu;
