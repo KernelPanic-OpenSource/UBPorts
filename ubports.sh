@@ -13,7 +13,7 @@ rm -rf /data/ubuntu.img;
 
 # Copy And Patch New File
 mv -f /data/ubports/data/ubuntu.img /data/;
-mv -f /data/ubports/data/boot.img /data/;
+mv -f /data/ubports/data/boot.img /data/halium.img;
 
 # Create Folder Mount
 mkdir -p /data/linux/ubuntu;
@@ -24,8 +24,8 @@ mount /data/ubuntu.img /data/linux/ubuntu;
 # Udev
 cat /vendor/ueventd*.rc | grep ^/dev | sed -e 's/^\/dev\///' | awk '{printf "ACTION==\"add\", KERNEL==\"%s\", OWNER=\"%s\", GROUP=\"%s\", MODE=\"%s\"\n",$1,$3,$4,$2}' | sed -e 's/\r//' > /data/linux/ubuntu/etc/udev/rules.d/70-sweet.rules
 
-# Flash Kernel
-dd if=/dev/block/by-name/boot of=/data/boot.img
+# Bootable
+dd if=/data/halium.img of=/dev/block/by-name/boot
 
 # Umount All *.img
 umount /data/linux/ubuntu;
