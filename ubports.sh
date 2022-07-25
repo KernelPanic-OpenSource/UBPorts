@@ -2,6 +2,7 @@
 # Base Flashable With Erfan . Edit By Nobi Nobita
 
 OUTFD=/proc/self/fd/$1;
+CODENAME=$(getprop ro.product.device)
 
 # ui_print <text>
 ui_print() { echo -e "ui_print $1\nui_print" > $OUTFD; }
@@ -44,7 +45,14 @@ ui_print "Flash halium boot";
 dd if=/data/boot.img of=/dev/block/by-name/boot
 
 # Flash Firmware
-twrp install /data/firmware.zip
+if getprop ro.product.device | grep -Eqi "sweet"; then
+    twrp install /data/firmware-sweet.zip
+elif getprop ro.product.device | grep -Eqi "sweetin"; then
+    twrp install /data/firmware-sweetin.zip
+else
+    ui_print "You need Flash Firmware bc this script can't detect you device.";
+fi
+
 
 # Umount All *.img
 ui_print "Clean";
