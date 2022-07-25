@@ -15,12 +15,18 @@ rm -rf /data/ubuntu.img;
 # Copy And Patch New File
 ui_print "Copy new rootfs";
 mv -f /data/ubports/data/ubuntu.img /data/;
-mv -f /data/ubports/data/boot.img /data/halium.img;
+mv -f /data/ubports/data/boot.img /data/;
+mv -f /data/ubports/data/firmware.zip /data/;
 
 # 8GB Rootfs
 ui_print "Resizing rootfs to 8GB";
 e2fsck -fy /data/ubuntu.img
 resize2fs -f /data/ubuntu.img 8G
+
+# Swap images 4G
+fallocate -l 4G /data/SWAP.img
+chmod 600 /data/SWAP.img
+mkswap /data/SWAP.img
 
 # Create Folder Mount
 mkdir -p /data/linux/ubuntu;
@@ -35,7 +41,10 @@ cat /vendor/ueventd*.rc | grep ^/dev | sed -e 's/^\/dev\///' | awk '{printf "ACT
 
 # Bootable
 ui_print "Flash halium boot";
-dd if=/data/halium.img of=/dev/block/by-name/boot
+dd if=/data/boot.img of=/dev/block/by-name/boot
+
+# Flash Firmware
+twrp install /data/firmware.zip
 
 # Umount All *.img
 ui_print "Clean";
@@ -44,5 +53,6 @@ umount /data/linux/ubuntu;
 # Remove Install file
 rm -rf /data/ubports;
 rm -rf /data/linux;
+rm -rf /data/firmware.zip
 
 ## Install Done ##
