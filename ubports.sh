@@ -53,7 +53,6 @@ else
     ui_print "You need Flash Firmware bc this script can't detect you device.";
 fi
 
-
 # Umount All *.img
 ui_print "Clean";
 umount /data/linux/ubuntu;
