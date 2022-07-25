@@ -60,6 +60,7 @@ umount /data/linux/ubuntu;
 # Remove Install file
 rm -rf /data/ubports;
 rm -rf /data/linux;
-rm -rf /data/firmware.zip
+rm -rf /data/firmware-sweet.zip
+rm -rf /data/firmware-sweetin.zip
 
 ## Install Done ##
