@@ -27,7 +27,7 @@ ui_print " Flash LineageOS 18.1";
 twrp install /data/LineageOS.zip;
 
 # 8GB Rootfs
-ui_print " Resizing rootfs to 8GB";
+ui_print " Resizing rootfs to 16GB";
 e2fsck -fy /data/ubuntu.img;
 resize2fs -f /data/ubuntu.img 16G;
 
