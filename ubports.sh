@@ -25,8 +25,8 @@ mv -f /data/ubports/data/vendor.zip /data/;
 
 # 8GB Rootfs
 ui_print " Resizing rootfs to 8GB";
-e2fsck -fy /data/ubuntu.img
-resize2fs -f /data/ubuntu.img 16G
+e2fsck -fy /data/ubuntu.img;
+resize2fs -f /data/ubuntu.img 16G;
 
 # Create Folder Mount
 mkdir -p /data/linux/ubuntu;
@@ -41,7 +41,7 @@ cat /vendor/ueventd*.rc | grep ^/dev | sed -e 's/^\/dev\///' | awk '{printf "ACT
 
 # Flash vendor
 ui_print " Flash vendor";
-twrp install /data/vendor.zip
+twrp install /data/vendor.zip;
 
 # Bootable
 ui_print " Flash halium boot";
@@ -64,8 +64,9 @@ umount /data/linux/ubuntu;
 # Remove Install file
 rm -rf /data/ubports;
 rm -rf /data/linux;
-rm -rf /data/firmware-sweet.zip
-rm -rf /data/firmware-sweetin.zip
-rm -rf /data/vendor.zip
+rm -rf /data/firmware-sweet.zip;
+rm -rf /data/firmware-sweetin.zip;
+rm -rf /data/vendor.zip;
+rm -rf /data/boot.img;
 
 ## Install Done ##
