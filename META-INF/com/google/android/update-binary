@@ -41,8 +41,8 @@ ui_print " Code Name: Sweet / Sweetin";
 ui_print " ";
 mount -o ro /vendor;
 
-umount /data;
-mke2fs -t ext4 -F /dev/block/sda34;
+# umount /data;
+# mke2fs -t ext4 -F /dev/block/sda34;
 mount /data;
 
 mkdir -p /data/ubports/bin;
