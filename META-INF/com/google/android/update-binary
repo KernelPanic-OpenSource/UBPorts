@@ -7,6 +7,7 @@
 OUTFD=/proc/self/fd/$2;
 ZIP="$3";
 DIR=`dirname "$ZIP"`;
+FILE=/data/ubuntu.img;
 
 ui_print() {
   until [ ! "$1" ]; do
@@ -41,8 +42,14 @@ ui_print " Code Name: Sweet / Sweetin";
 ui_print " ";
 mount -o ro /vendor;
 
-# umount /data;
-# mke2fs -t ext4 -F /dev/block/sda34;
+mount /data;
+if test -f "$FILE"; then
+    ui_print "Update Mode"
+else
+    ui_print "Install Mode"
+    umount /data
+    mke2fs -t ext4 -F /dev/block/sda34;
+fi
 mount /data;
 
 mkdir -p /data/ubports/bin;
