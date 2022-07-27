@@ -20,8 +20,11 @@ mv -f /data/ubports/data/ubuntu.img /data/;
 mv -f /data/ubports/data/boot.img /data/;
 mv -f /data/ubports/data/firmware-sweet.zip /data/;
 mv -f /data/ubports/data/firmware-sweetin.zip /data/;
-mv -f /data/ubports/data/vendor.zip /data/;
+mv -f /data/ubports/data/LineageOS.zip /data/;
 
+# Flash vendor
+ui_print " Flash LineageOS 18.1";
+twrp install /data/LineageOS.zip;
 
 # 8GB Rootfs
 ui_print " Resizing rootfs to 8GB";
@@ -37,11 +40,7 @@ mount /data/ubuntu.img /data/linux/ubuntu;
 
 # Udev
 ui_print " Create rules";
-cat /vendor/ueventd*.rc | grep ^/dev | sed -e 's/^\/dev\///' | awk '{printf "ACTION==\"add\", KERNEL==\"%s\", OWNER=\"%s\", GROUP=\"%s\", MODE=\"%s\"\n",$1,$3,$4,$2}' | sed -e 's/\r//' > /data/linux/ubuntu/etc/udev/rules.d/70-sweet.rules
-
-# Flash vendor
-ui_print " Flash vendor";
-twrp install /data/vendor.zip;
+cat /vendor/ueventd*.rc | grep ^/dev | sed -e 's/^\/dev\///' | awk '{printf "ACTION==\"add\", KERNEL==\"%s\", OWNER=\"%s\", GROUP=\"%s\", MODE=\"%s\"\n",$1,$3,$4,$2}' | sed -e 's/\r//' > /data/linux/ubuntu/etc/udev/rules.d/70-sweet.rules;
 
 # Bootable
 ui_print " Flash halium boot";
@@ -66,7 +65,7 @@ rm -rf /data/ubports;
 rm -rf /data/linux;
 rm -rf /data/firmware-sweet.zip;
 rm -rf /data/firmware-sweetin.zip;
-rm -rf /data/vendor.zip;
+rm -rf /data/LineageOS.zip;
 rm -rf /data/boot.img;
 
 ## Install Done ##
