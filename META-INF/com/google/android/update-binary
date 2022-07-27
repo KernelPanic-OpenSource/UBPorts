@@ -35,8 +35,10 @@ ui_print "   | |_| | |_) |  __/ (_) | |  | |_\__ \ ";
 ui_print "    \___/|____/|_|   \___/|_|   \__|___/ ";
 ui_print "                                         ";
 ui_print " ";
-ui_print " Start Install Ubuntu Touch / UbPorts ";
-ui_print " Xiaomi Redmi Note 10 Pro             ";
+ui_print " Start Install Ubuntu Touch - halium 11.0";
+ui_print " Xiaomi Redmi Note 10 Pro / Max";
+ui_print " Code Name: Sweet / Sweetin";
+ui_print " ";
 mount -o ro /vendor;
 
 umount /data;
