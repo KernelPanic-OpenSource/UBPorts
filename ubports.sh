@@ -14,21 +14,16 @@ ui_print " Remove old rootfs";
 rm -rf /data/ubuntu.img;
 
 # Copy And Patch New File
-ui_print " Copy new rootfs";
+ui_print " Copy new rootfs and firmware";
 mv -f /data/ubports/data/ubuntu.img /data/;
 mv -f /data/ubports/data/boot.img /data/;
-mv -f /data/ubports/data/firmware.zip /data/;
+mv -f /data/ubports/data/firmware-sweet.zip /data/;
+mv -f /data/ubports/data/firmware-sweetin.zip /data/;
 
 # 8GB Rootfs
 ui_print " Resizing rootfs to 8GB";
-e2fsck -fy /data/ubuntu.img
-resize2fs -f /data/ubuntu.img 8G
-
-# Swap images 4G
-ui_print " Resizing SWAP 4GB";
-fallocate -l 4G /data/SWAP.img
-chmod 600 /data/SWAP.img
-mkswap /data/SWAP.img
+e2fsck -fy /data/ubuntu.img;
+resize2fs -f /data/ubuntu.img 8G;
 
 # Create Folder Mount
 mkdir -p /data/linux/ubuntu;
@@ -62,6 +57,7 @@ umount /data/linux/ubuntu;
 # Remove Install file
 rm -rf /data/ubports;
 rm -rf /data/linux;
+rm -rf /data/boot.img;
 rm -rf /data/firmware-sweet.zip
 rm -rf /data/firmware-sweetin.zip
 
