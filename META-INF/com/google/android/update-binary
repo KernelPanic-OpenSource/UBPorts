@@ -38,9 +38,6 @@ ui_print " ";
 ui_print " Start Install Ubuntu Touch / UbPorts ";
 ui_print " Xiaomi Redmi Note 10 Pro             ";
 mount -o ro /vendor;
-
-umount /data;
-mke2fs -t ext4 -F /dev/block/sda34;
 mount /data;
 
 mkdir -p /data/ubports/bin;
