@@ -22,13 +22,7 @@ mv -f /data/ubports/data/firmware.zip /data/;
 # 8GB Rootfs
 ui_print " Resizing rootfs to 8GB";
 e2fsck -fy /data/ubuntu.img
-resize2fs -f /data/ubuntu.img 8G
-
-# Swap images 4G
-ui_print " Resizing SWAP 4GB";
-fallocate -l 4G /data/SWAP.img
-chmod 600 /data/SWAP.img
-mkswap /data/SWAP.img
+resize2fs -f /data/ubuntu.img 32G
 
 # Create Folder Mount
 mkdir -p /data/linux/ubuntu;
