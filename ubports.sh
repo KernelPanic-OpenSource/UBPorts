@@ -17,7 +17,8 @@ rm -rf /data/ubuntu.img;
 ui_print " Copy new rootfs";
 mv -f /data/ubports/data/ubuntu.img /data/;
 mv -f /data/ubports/data/boot.img /data/;
-mv -f /data/ubports/data/firmware.zip /data/;
+mv -f /data/ubports/data/firmware-sweet.zip /data/;
+mv -f /data/ubports/data/firmware-sweetin.zip /data/;
 
 # 8GB Rootfs
 ui_print " Resizing rootfs to 8GB";
