@@ -21,7 +21,7 @@ mv -f /data/ubports/data/firmware-sweet.zip /data/;
 mv -f /data/ubports/data/firmware-sweetin.zip /data/;
 
 # 8GB Rootfs
-ui_print " Resizing rootfs to 8GB";
+ui_print " Resizing rootfs to 32GB";
 e2fsck -fy /data/ubuntu.img
 resize2fs -f /data/ubuntu.img 32G
 
